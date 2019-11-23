@@ -2,4 +2,5 @@
 
 Player::Player(int col){
     color = col;
+    illegal = false;
 }

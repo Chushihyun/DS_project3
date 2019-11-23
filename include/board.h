@@ -1,6 +1,8 @@
 #ifndef INCLUDE_BOARD_H_
 #define INCLUDE_BOARD_H_
 
+#include "player.h"
+
 /******************************************************
  * This header is about the data structure of the Board
  * which is composed of the data structure of the Cell.
@@ -15,7 +17,7 @@
 ******************************************************/
 
 #define ROW 5
-#define COL 6
+#define COL 6   
 
 class Cell{
     private:
@@ -41,7 +43,7 @@ class Board{
     public:
         Board();
         void print_current_board();
-        void place_orb(int i, int j);
+        bool place_orb(int i, int j, Player player);
 
 };
 

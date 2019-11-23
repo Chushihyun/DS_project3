@@ -1,5 +1,6 @@
-#include "../include/board.h"
 #include <iostream>
+#include "../include/board.h"
+#include "../include/rules.h"
 
 using namespace std;
 
@@ -56,5 +57,20 @@ void Board::print_current_board(){
         cout << endl;
     }
 
+}
+
+bool Board::place_orb(int i, int j, Player player){
+    
+    if(check_placement(i, j, player, cells[i][j])){
+
+        int temp = cells[i][j].get_orbs_num();
+        temp += 1;
+        cells[i][j].set_orbs_num(temp);
+
+        return true;
+    }
+    else{
+
+    }
 }
 
