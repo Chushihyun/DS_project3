@@ -28,3 +28,7 @@ void Cell::set_capacity(int cap){
 void Cell::set_color(char col){
     this->color = col;
 }
+
+Board::Board(){
+    
+}

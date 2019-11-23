@@ -33,9 +33,9 @@ class Cell{
 
 class Board{
     private:
-        
+        Cell board[5][6];
     public:
-
+        Board();
 };
 
 #endif

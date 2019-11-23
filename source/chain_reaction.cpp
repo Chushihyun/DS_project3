@@ -5,7 +5,6 @@ using namespace std;
 
 
 int main(){
-    Cell t;
     
     return 0;
 } 
