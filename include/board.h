@@ -14,6 +14,9 @@
  * !!!!!!WARNING!!!!!!
 ******************************************************/
 
+#define ROW 5
+#define COL 6
+
 class Cell{
     private:
         int orbs_num;   // The number of the orbs on the cell 
@@ -33,9 +36,13 @@ class Cell{
 
 class Board{
     private:
-        Cell board[5][6];
+        Cell cells[ROW][COL];   // The 5*6 board whose index (0,0) is start from the upper left corner
+
     public:
         Board();
+        void print_current_board();
+        void place_orb(int i, int j);
+
 };
 
 #endif
