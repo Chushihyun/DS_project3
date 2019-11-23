@@ -13,6 +13,7 @@
 #define LEGAL true
 #define ILLEGAL false
 
-bool check_placement(int i, int j, Player player, Cell cell);
+bool placement_illegal(Player player, Cell cell);
+bool index_range_illegal(int i, int j);
 
 #endif

@@ -61,16 +61,17 @@ void Board::print_current_board(){
 
 bool Board::place_orb(int i, int j, Player player){
     
-    if(check_placement(i, j, player, cells[i][j])){
-
+    if(index_range_illegal(i, j) || !placement_illegal(player, cells[i][j])){
         int temp = cells[i][j].get_orbs_num();
         temp += 1;
         cells[i][j].set_orbs_num(temp);
-
-        return true;
+        cells[i][j].set_color(player.get_color());
     }
     else{
-
+        player.set_illegal();
+        cout << "Illegla placement" << endl;
     }
+    
+    return true;
 }
 
