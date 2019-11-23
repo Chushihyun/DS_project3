@@ -1,12 +1,11 @@
 #include <iostream>
-#include "algorithm.h"
+#include "../include/board.h"
 
 using namespace std;
 
-int main(){
-    
-    Test t;
-    cout << t.i << endl;
 
+int main(){
+    Cell t;
+    
     return 0;
-}
+} 
