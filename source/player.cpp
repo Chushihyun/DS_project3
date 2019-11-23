@@ -1,4 +1,7 @@
 #include "../include/player.h"
+#include <iostream>
+
+using namespace std;
 
 Player::Player(int col){
     color = col;
@@ -6,9 +9,13 @@ Player::Player(int col){
 }
 
 void Player::set_illegal(){
-    illegal = true;
+    this->illegal = true;
 }
 
 char Player::get_color(){
     return this->color;
+}
+
+bool Player::is_illegal(){
+    return this->illegal;
 }

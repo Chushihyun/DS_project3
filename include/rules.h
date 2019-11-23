@@ -7,13 +7,20 @@
 
 /******************************************************
  * This header is about the data structure of the Rules
- * which includes all the rules detection functions
+ * which includes all the illegal operations detection 
+ * functions
 ******************************************************/
 
 #define LEGAL true
 #define ILLEGAL false
 
+// Check all the rules when player places the orb
 bool placement_illegal(Player player, Cell cell);
+
+// Check wether the idnex is over the boundary of board
 bool index_range_illegal(int i, int j);
+
+// Determine if there is a violation
+bool rules_violation(Player player);
 
 #endif

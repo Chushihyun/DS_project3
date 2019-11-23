@@ -43,7 +43,9 @@ class Board{
     public:
         Board();
         void print_current_board();
-        bool place_orb(int i, int j, Player player);
+        void place_orb(int i, int j, Player* player);
+        bool cell_is_full(Cell cell);
+        void chain_reaction(int i, int j);
 
 };
 

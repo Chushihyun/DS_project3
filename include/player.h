@@ -16,6 +16,7 @@ class Player{
     public:
         Player(int col);
         char get_color();
+        bool is_illegal();
         void set_illegal();
 };
 

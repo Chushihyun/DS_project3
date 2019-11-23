@@ -1,14 +1,13 @@
 #include "../include/rules.h"
+#include <iostream>
 
-// Check all the rules when player places the orb
+using namespace std;
+
 bool placement_illegal(Player player, Cell cell){
 
     bool illegal = false;
     // Check wether the cell has be placed or not
     if(cell.get_color() == 'w') return illegal;
-
-    // Check cell capacity
-    if(cell.get_orbs_num() > cell.get_capacity()) illegal = true;
 
     //Check color
     if(cell.get_color() != player.get_color()) illegal = true;
@@ -17,11 +16,34 @@ bool placement_illegal(Player player, Cell cell){
 
 }
 
-//Check wether the idnex is over the boundary of board
 bool index_range_illegal(int i, int j){
 
     bool illegal = false;
     if(i > 4 || j > 5) illegal = true;
     return illegal;
 
+}
+
+bool rules_violation(Player player){
+
+    if(player.is_illegal()){
+        
+        if(player.get_color() == 'b'){
+            cout << "Blue_Player violated the game rules." << endl;
+            cout << "Red_Player is winner." << endl;
+        }
+
+        if(player.get_color() == 'r'){
+            cout << "Red_Player violated the game rules." << endl;
+            cout << "Blue_Player is winner." << endl;
+        }
+
+        return true;
+    }
+
+    else
+    {
+        return false;
+    }
+    
 }

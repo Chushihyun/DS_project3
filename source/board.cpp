@@ -59,19 +59,28 @@ void Board::print_current_board(){
 
 }
 
-bool Board::place_orb(int i, int j, Player player){
+void Board::place_orb(int i, int j, Player * player){
     
-    if(index_range_illegal(i, j) || !placement_illegal(player, cells[i][j])){
+    if(index_range_illegal(i, j) || !placement_illegal(*player, cells[i][j])){
         int temp = cells[i][j].get_orbs_num();
         temp += 1;
         cells[i][j].set_orbs_num(temp);
-        cells[i][j].set_color(player.get_color());
+        cells[i][j].set_color(player->get_color());
     }
     else{
-        player.set_illegal();
-        cout << "Illegla placement" << endl;
+        player->set_illegal();
+        return;
     }
-    
-    return true;
+
+    if(cell_is_full(cells[i][j])){
+        chain_reaction(i, j);
+    }
+}
+
+bool Board::cell_is_full(Cell cell){
+    if(cell.get_orbs_num() == cell.get_capacity()){
+        return true;
+    }
+    else return false;
 }
 
