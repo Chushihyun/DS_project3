@@ -17,23 +17,26 @@
 ******************************************************/
 
 #define ROW 5
-#define COL 6   
+#define COL 6
 
 class Cell{
     private:
         int orbs_num;   // The number of the orbs on the cell 
         int capacity;   // The max number of the orbs of a cell
         char color;     // The color of the cell, 'w'(No one has placed the orbs), 'r'(Red Player) and 'b'(Blue player)
+        bool explode;
 
     public:
         Cell();
         int get_orbs_num();
         int get_capacity();
         char get_color();
+        bool get_explode();
 
         void set_orbs_num(int orbs);
         void set_capacity(int cap);
         void set_color(char col);
+        void set_explode(bool tof);
 };
 
 class Board{
@@ -43,10 +46,12 @@ class Board{
     public:
         Board();
         void print_current_board();
-        void place_orb(int i, int j, Player* player);
-        bool cell_is_full(Cell cell);
-        void chain_reaction(int i, int j);
-
+        bool place_orb(int i, int j, Player* player);
+        bool cell_is_full(Cell* cell);
+        void explode(int i, int j);
+        void chain_reaction();
+        void mark_reaction_cell();
+        bool win_the_game(Player player);
 };
 
 #endif
