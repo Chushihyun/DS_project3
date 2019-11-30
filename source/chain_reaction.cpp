@@ -5,6 +5,10 @@
 
 using namespace std;
 
+void print_iteration(int& i){
+    cout << "Iteration: " << i << endl;
+    i++;
+}
 
 int main(){
 
@@ -14,12 +18,11 @@ int main(){
     Player Blue_player(BLUE);
 
     bool first_two_step = true;
-    int i = 1;
+    int iteration = 1;
 
     while(1){
         
-        cout << "Iteration: " << i << endl;
-        i++;
+        print_iteration(iteration);
 
         cout << "Red Player: " << endl;  
         board.place_orb(0, 0, &Red_player);

@@ -61,6 +61,7 @@ void Board::print_current_board(){
     char symbol;
 
     ////// Print out the current state of the board //////
+    system("CLS");
     cout << "=========================================" << endl;
     for(int i = 0; i < ROW; i++){
         for(int j = 0; j < COL; j++){
