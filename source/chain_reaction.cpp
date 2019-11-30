@@ -6,14 +6,8 @@
 
 using namespace std;
 
-void print_iteration(int& i){
-    cout << "Iteration: " << i << endl;
-    i++;
-}
-
 int main(){
 
-    bool temp;
     Board board;
     Player red_player(RED);
     Player blue_player(BLUE);
@@ -27,7 +21,7 @@ int main(){
 
     while(1){
 
-        ////// Red Player operations //////
+        //////////// Red Player operations ////////////
         algorithm_A(board, red_player, index);
         board.place_orb(index[0], index[1], &red_player);
 
@@ -41,7 +35,7 @@ int main(){
             return 0;
         }
 
-        ////// Blue Player operations //////
+        //////////// Blue Player operations ////////////
         algorithm_B(board, blue_player, index);
         board.place_orb(index[0], index[1], &blue_player);
 

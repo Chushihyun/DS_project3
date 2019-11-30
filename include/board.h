@@ -10,10 +10,16 @@
 
 
 /******************************************************
- * !!!!!!WARNING!!!!!!
+ * !!!!!!!!!!!!!!!!!!WARNING!!!!!!!!!!!!!!!!!!
+ * !!!!!!!!!!!!!!!!!!WARNING!!!!!!!!!!!!!!!!!!
+ * !!!!!!!!!!!!!!!!!!WARNING!!!!!!!!!!!!!!!!!!
+ * 
  * You "should not" call or modify the functions in the
  * data strucutre of Cell.
- * !!!!!!WARNING!!!!!!
+ * 
+ * !!!!!!!!!!!!!!!!!!WARNING!!!!!!!!!!!!!!!!!!
+ * !!!!!!!!!!!!!!!!!!WARNING!!!!!!!!!!!!!!!!!!
+ * !!!!!!!!!!!!!!!!!!WARNING!!!!!!!!!!!!!!!!!!
 ******************************************************/
 
 #define ROW 5
@@ -28,7 +34,9 @@ class Cell{
 
     public:
         Cell();
-        int get_orbs_num();
+
+        // The basic functions of the Cell
+        int get_orbs_num(); 
         int get_capacity();
         char get_color();
         bool get_explode();
@@ -41,23 +49,26 @@ class Cell{
 
 class Board{
     private:
-        Cell cells[ROW][COL];   // The 5*6 board whose index (0,0) is start from the upper left corner
-        void cell_reaction_marker();
-        bool cell_is_full(Cell* cell);
-        void add_orb(int i, int j, char color);
-        void cell_reset(int i, int j);
-        void cell_explode(int i, int j);
-        void cell_chain_reaction(Player player);
+        Cell cells[ROW][COL];                       // The 5*6 board whose index (0,0) is start from the upper left corner
+        void cell_reaction_marker();                // After the explosion, mark all the cell that  will explode in next iteration
+        bool cell_is_full(Cell* cell);              // Check wether the cell is full of orbs and set the explosion variable to be true
+        void add_orb(int i, int j, char color);     // Add orb into the cell (i, j)
+        void cell_reset(int i, int j);              // Reset the cell to the initial state (color = 'w', orb_num = 0)
+        void cell_explode(int i, int j);            // The explosion of cell (i, j). It will add the orb into neighbor cells
+        void cell_chain_reaction(Player player);    // If there is aa explosion, check wether the chain reaction is active
 
     public:
         Board();
+        
+        // The basic functions of the Board
         int get_orbs_num(int i, int j);
         int get_capacity(int i, int j);
         char get_cell_color(int i, int j);
-        bool place_orb(int i, int j, Player* player);
 
-        void print_current_board(int i, int j, int round);
-        bool win_the_game(Player player);
+        bool place_orb(int i, int j, Player* player);      // Use this function to place a orb into a cell
+        void print_current_board(int i, int j, int round); // Print out the current state of the hole board
+
+        bool win_the_game(Player player);                  // The function that is used to check wether the player wins the game after his/her placemnet operation
 };
 
 #endif

@@ -20,7 +20,7 @@ bool placement_illegal(Player player, Cell cell);
 // Check wether the idnex is over the boundary of board
 bool index_range_illegal(int i, int j);
 
-// Determine if there is a violation
+// Determine if there is a violation, if yes return true
 bool rules_violation(Player player);
 
 #endif
