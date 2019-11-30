@@ -56,16 +56,48 @@ Board::Board(){
 }
 
 void Board::print_current_board(){
-    
+
+    int orb_num;
+    char symbol;
+
     ////// Print out the current state of the board //////
+    cout << "=========================================" << endl;
     for(int i = 0; i < ROW; i++){
         for(int j = 0; j < COL; j++){
-            cout << cells[i][j].get_orbs_num() << " ";
+
+            symbol = cells[i][j].get_color();
+            switch(symbol){
+                case 'r':
+                    symbol = 'O';
+                    break;
+                case 'b':
+                    symbol = 'X';
+                    break;
+                default:
+                    break;
+            }
+
+            orb_num = cells[i][j].get_orbs_num();
+            switch(orb_num){
+                case 0:
+                    cout << "|    | ";
+                    break;
+                case 1:
+                    cout << "|" << symbol << "   | ";
+                    break;
+                case 2: 
+                    cout << "|" << symbol << symbol << "  | ";
+                    break;
+                case 3:
+                    cout << "|" << symbol << symbol << symbol << " | ";
+                    break;
+                default:
+                    cout << "|" << symbol << symbol << symbol << symbol << "| ";
+            }
         }
         cout << endl;
     }
-    cout << endl ;
-
+    cout << "=========================================" << endl;
 }
 
 bool Board::place_orb(int i, int j, Player * player){
@@ -82,7 +114,8 @@ bool Board::place_orb(int i, int j, Player * player){
     }
 
     if(cell_is_full(&cells[i][j])){
-        first_explode(i, j);
+        explode(i, j);
+        mark_reaction_cell();
         chain_reaction(*player);
     }
 
@@ -110,7 +143,8 @@ void Board::reset_cell(int i, int j){
     cells[i][j].set_color('w');
 }
 
-void Board::first_explode(int i, int j){
+void Board::explode(int i, int j){
+
     int orb_num;
     char color = cells[i][j].get_color();
 
@@ -130,43 +164,6 @@ void Board::first_explode(int i, int j){
 
     if( j - 1 >= 0){
         add_orb(i, j-1, color);
-    }
-
-    mark_reaction_cell();
-}
-
-void Board::explode(int i, int j){
-
-    // cout << "explosion : " << i << " " << j << endl;
-    int orb_num;
-    char color = cells[i][j].get_color();
-
-    cells[i][j].set_orbs_num(0);    // Set the explosion cell to zero
-    cells[i][j].set_explode(false);
-    cells[i][j].set_color('w');
-
-    if( i + 1 < ROW){
-        orb_num = cells[i+1][j].get_orbs_num();
-        cells[i+1][j].set_orbs_num(orb_num + 1);
-        cells[i+1][j].set_color(color);
-    }
-
-    if( j + 1 < COL){
-        orb_num = cells[i][j+1].get_orbs_num();
-        cells[i][j+1].set_orbs_num(orb_num + 1);
-        cells[i][j+1].set_color(color);
-    }
-
-    if( i - 1 >= 0){
-        orb_num = cells[i-1][j].get_orbs_num();
-        cells[i-1][j].set_orbs_num(orb_num + 1);
-        cells[i-1][j].set_color(color);
-    }
-
-    if( j - 1 >= 0){
-        orb_num = cells[i][j-1].get_orbs_num();
-        cells[i][j-1].set_orbs_num(orb_num + 1);
-        cells[i][j-1].set_color(color);
     }
 }
 
@@ -192,8 +189,6 @@ void Board::chain_reaction(Player player){
             for(int j = 0; j < COL; j++){
                 if(cells[i][j].get_explode()){
                     explode(i ,j);
-                    cout << "Explosion:\n";
-                    print_current_board();
                     chain_reac = true;
                 }
             }
