@@ -97,36 +97,39 @@ bool Board::cell_is_full(Cell* cell){
     else return false;
 }
 
+void Board::add_orb(int i, int j, char color){
+    int orb_num = cells[i][j].get_orbs_num();
+    orb_num ++;
+    cells[i][j].set_orbs_num(orb_num);
+    cells[i][j].set_color(color);
+}
+
+void Board::reset_cell(int i, int j){
+    cells[i][j].set_orbs_num(0);
+    cells[i][j].set_explode(false);
+    cells[i][j].set_color('w');
+}
+
 void Board::first_explode(int i, int j){
     int orb_num;
     char color = cells[i][j].get_color();
 
-    cells[i][j].set_orbs_num(0);    // Set the explosion cell to zero
-    cells[i][j].set_explode(false);
-    cells[i][j].set_color('w');
+    reset_cell(i, j);
 
     if( i + 1 < ROW){
-        orb_num = cells[i+1][j].get_orbs_num();
-        cells[i+1][j].set_orbs_num(orb_num + 1);
-        cells[i+1][j].set_color(color);
+        add_orb(i+1, j, color);
     }
 
     if( j + 1 < COL){
-        orb_num = cells[i][j+1].get_orbs_num();
-        cells[i][j+1].set_orbs_num(orb_num + 1);
-        cells[i][j+1].set_color(color);
+        add_orb(i, j+1, color);
     }
 
     if( i - 1 >= 0){
-        orb_num = cells[i-1][j].get_orbs_num();
-        cells[i-1][j].set_orbs_num(orb_num + 1);
-        cells[i-1][j].set_color(color);
+        add_orb(i-1, j, color);
     }
 
     if( j - 1 >= 0){
-        orb_num = cells[i][j-1].get_orbs_num();
-        cells[i][j-1].set_orbs_num(orb_num + 1);
-        cells[i][j-1].set_color(color);
+        add_orb(i, j-1, color);
     }
 
     mark_reaction_cell();

@@ -45,12 +45,18 @@ class Board{
 
     public:
         Board();
-        void print_current_board();
+
         bool place_orb(int i, int j, Player* player);
-        bool cell_is_full(Cell* cell);
+        void print_current_board();
+
         void first_explode(int i, int j);
         void explode(int i, int j);
         void chain_reaction(Player player);
+
+        void add_orb(int i, int j, char color);
+        void reset_cell(int i, int j);
+        
+        bool cell_is_full(Cell* cell);
         void mark_reaction_cell();
         bool win_the_game(Player player);
 };
