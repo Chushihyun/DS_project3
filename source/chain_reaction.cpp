@@ -2,6 +2,7 @@
 #include "../include/board.h"
 #include "../include/player.h"
 #include "../include/rules.h"
+#include "../include/algorithm.h"
 
 using namespace std;
 
@@ -14,37 +15,43 @@ int main(){
 
     bool temp;
     Board board;
-    Player Red_player(RED);
-    Player Blue_player(BLUE);
+    Player red_player(RED);
+    Player blue_player(BLUE);
 
     bool first_two_step = true;
-    int iteration = 1;
+    int round = 1;
+
+    int index[2];
+
+    algorithm_A(board, red_player, index);
 
     while(1){
-        
-        print_iteration(iteration);
 
-        cout << "Red Player: " << endl;  
-        board.place_orb(0, 0, &Red_player);
+        ////// Red Player operations //////
+        algorithm_A(board, red_player, index);
+        board.place_orb(index[0], index[1], &red_player);
 
-        if(rules_violation(Red_player)) return 0;
+        if(rules_violation(red_player)) return 0;
 
-        board.print_current_board();
+        board.print_current_board(index[0], index[1], round);
+        round++;
 
-        if(board.win_the_game(Red_player) && !first_two_step){
-            cout << "Red Player win the game !!!" << endl;
+        if(board.win_the_game(red_player) && !first_two_step){
+            cout << "Red Player won the game !!!" << endl;
             return 0;
         }
 
-        cout << "Blue_Player: " << endl;
-        board.place_orb(4, 5, &Blue_player);
+        ////// Blue Player operations //////
+        algorithm_B(board, blue_player, index);
+        board.place_orb(index[0], index[1], &blue_player);
 
-        if(rules_violation(Blue_player)) return 0;
+        if(rules_violation(blue_player)) return 0;
         
-        board.print_current_board();
+        board.print_current_board(index[0], index[1], round);
+        round++;
 
-        if(board.win_the_game(Blue_player) && !first_two_step){
-            cout << "Blue Player win the game !!!" << endl;
+        if(board.win_the_game(blue_player) && !first_two_step){
+            cout << "Blue Player won the game !!!" << endl;
             return 0;
         }
 

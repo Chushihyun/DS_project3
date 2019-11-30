@@ -42,21 +42,21 @@ class Cell{
 class Board{
     private:
         Cell cells[ROW][COL];   // The 5*6 board whose index (0,0) is start from the upper left corner
+        void cell_reaction_marker();
+        bool cell_is_full(Cell* cell);
+        void add_orb(int i, int j, char color);
+        void cell_reset(int i, int j);
+        void cell_explode(int i, int j);
+        void cell_chain_reaction(Player player);
 
     public:
         Board();
-
+        int get_orbs_num(int i, int j);
+        int get_capacity(int i, int j);
+        char get_cell_color(int i, int j);
         bool place_orb(int i, int j, Player* player);
-        void print_current_board();
 
-        void explode(int i, int j);
-        void chain_reaction(Player player);
-
-        void add_orb(int i, int j, char color);
-        void reset_cell(int i, int j);
-
-        bool cell_is_full(Cell* cell);
-        void mark_reaction_cell();
+        void print_current_board(int i, int j, int round);
         bool win_the_game(Player player);
 };
 
