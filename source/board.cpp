@@ -4,6 +4,13 @@
 
 using namespace std;
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+    #define CLEAR "CLS"
+    
+#elif __APPLE__
+    #define CLEAR "clear"
+    #endif
+
 Cell::Cell(){
     orbs_num = 0, capacity = 4, color='w', explode = false;
 }
@@ -61,7 +68,7 @@ void Board::print_current_board(int i, int j, int round){
     char symbol;
 
     ////// Print out the current state of the board //////
-    system("CLS");
+    system(CLEAR);
     cout << "Round: " << round << endl;
     cout << "Place orb on (" << i << ", " << j << ")" << endl;
     cout << "=========================================" << endl;
