@@ -35,16 +35,18 @@ void algorithm_A(Board board, Player player, int index[]){
 
     //////////// Random Algorithm ////////////
     // Here is the random algorithm for your reference, you can delete or comment it.
-    srand(time(NULL));
+    //srand(time(NULL));
     int row, col;
     int color = player.get_color();
     
-    while(1){
-        row = rand() & 5;
-        col = rand() & 6;
-        if(board.get_cell_color(row, col) == color || board.get_cell_color(row, col) == 'w') break;
+    
+    for (row=0; row<5; row++) {
+        for (col=0; col<6; col++) {
+            if(board.get_cell_color(row, col) == color || board.get_cell_color(row, col) == 'w') break;
+        }
     }
-
+    
+    
     index[0] = row;
     index[1] = col;
 }

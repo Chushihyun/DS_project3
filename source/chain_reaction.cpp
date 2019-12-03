@@ -26,6 +26,8 @@ int main(){
 
         board.print_current_board(index[0], index[1], round);
         round++;
+        // wait for enter
+        getchar();
 
         if(board.win_the_game(red_player) && !first_two_step){
             cout << "Red Player won the game !!!" << endl;
@@ -40,6 +42,8 @@ int main(){
         
         board.print_current_board(index[0], index[1], round);
         round++;
+        // wait for enter
+        getchar();
 
         if(board.win_the_game(blue_player) && !first_two_step){
             cout << "Blue Player won the game !!!" << endl;
