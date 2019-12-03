@@ -6,7 +6,7 @@
 using namespace std;
 
 void algorithm_B(Board board, Player player, int index[]){
-    srand(time(NULL));
+    srand(time(NULL)*time(NULL));
     int row, col;
     int color = player.get_color();
     
