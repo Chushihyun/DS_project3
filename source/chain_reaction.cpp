@@ -14,10 +14,7 @@ int main(){
 
     bool first_two_step = true;
     int round = 1;
-
     int index[2];
-
-    algorithm_A(board, red_player, index);
 
     while(1){
 
